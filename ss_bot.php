@@ -1,5 +1,5 @@
 <?php
-
+include('weather-class.inc.php'); // This has all the code.
 $strAccessToken = "p+61LscGUYdwMkG3rsFToYUOdW6At1JDnFoIiysCq5AyuDHInXjw4Uc/VkNoHnxDqqOerPnqI7+VFVfu5ZdJ8+VoEtvAHvc/8FL1geX7cbKBHOYoZCVX3S7PkvuQZklBPFeTKT+Og64qQS4PAPy25gdB04t89/1O/w1cDnyilFU=";
 
 $content = file_get_contents('php://input');
@@ -12,15 +12,15 @@ $arrPostData = array();
 	
 if($inputtext == "สวัสดี") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "มีอะไรให้รับใช้ครับท่าน";
+	$arrPostData['messages'][0]['text'] = "สวัสดีค่ะ มีอะไรให้รับใช้คะ";
   
 } else if ($inputtext == "ชื่ออะไร") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "ชื่อเจวิส ครับท่าน";
+	$arrPostData['messages'][0]['text'] = "Sera ค่ะ";
   
 } else if ($inputtext == "ทำอะไรได้บ้าง") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "เปิด ปิด ไฟ แอร์ เช็คอุณหภูมิ ครับท่าน";
+	$arrPostData['messages'][0]['text'] = "หลายอย่างค่ะ";
   
 } else if ($inputtext == "เปิดไฟนอน1") {
   	$mode = curl_init("http://128.199.137.43:3000/smtbot2017/mode/5/o");
@@ -28,7 +28,7 @@ if($inputtext == "สวัสดี") {
   	$digital = curl_init("http://128.199.137.43:3000/smtbot2017/digital/5/1");
   	curl_exec($digital);
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "เปิดไฟแล้วครับ";
+	$arrPostData['messages'][0]['text'] = "เปิดไฟแล้วค่ะ";
   
 } else if ($inputtext == "ปิดไฟนอน1") {
   	$mode = curl_init("http://128.199.137.43:3000/smtbot2017/mode/5/o");
@@ -36,7 +36,7 @@ if($inputtext == "สวัสดี") {
   	$digital = curl_init("http://128.199.137.43:3000/smtbot2017/digital/5/0");
   	curl_exec($digital);
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "ปิดไฟแล้วครับ";
+	$arrPostData['messages'][0]['text'] = "ปิดไฟแล้วค่ะ";
 
 } else if ($inputtext == "ความชื้น") {
   	$s = file_get_contents("http://128.199.137.43:3000/smtbot2017/variable/humidity");
@@ -99,13 +99,14 @@ if($inputtext == "สวัสดี") {
 	
 }else{
  	$arrPostData['messages'][0]['type'] = 'text';
- 	$arrPostData['messages'][0]['text'] = "ไม่เข้าใจคำสั่งครับท่าน";
+ 	$arrPostData['messages'][0]['text'] = "ไม่เข้าใจคำสั่งค่ะ";
 }
 
 if ($w[0] == "อากาศ" and isset($w[1])) {
+		
 	$prov = $w[1];
-  	$a = file_get_contents("http://m.smart-fttx.com/test-weather.php?prov=$prov&token=inb32XpbrlLgd8HMCzhbhZsJq7VxkqqA");
- 	$arrPostData['messages'][0]['type'] = 'text';
+ 	$a =  new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
+	$arrPostData['messages'][0]['type'] = 'text';
  	$arrPostData['messages'][0]['text'] = $a;
 }
 
