@@ -12,15 +12,15 @@ $arrPostData = array();
 	
 if($inputtext == "สวัสดี") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "มีอะไรให้รับใช้ค่ะ";
+	$arrPostData['messages'][0]['text'] = "สวัสดีค่ะ มีอะไรให้รับใช้คะ";
   
 } else if ($inputtext == "ชื่ออะไร") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "ชื่อเจวิส ค่ะ";
+	$arrPostData['messages'][0]['text'] = "Sera ค่ะ";
   
 } else if ($inputtext == "ทำอะไรได้บ้าง") {
 	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "เปิด ปิด ไฟ แอร์ เช็คอุณหภูมิ ค่ะ";
+	$arrPostData['messages'][0]['text'] = "มากมายค่ะ";
   
 } else if ($inputtext == "เปิดไฟนอน1") {
   	$mode = curl_init("http://128.199.137.43:3000/smtbot2017/mode/5/o");
@@ -62,12 +62,12 @@ if($inputtext == "สวัสดี") {
 	$arrPostData['messages'][0]['type'] = 'text';
 	$arrPostData['messages'][0]['text'] = "อุณหภูมิ " . $hu . " C | ความชื้น " . $hu2 . " %";
 
-} else if ($inputtext == "แผนที่") {
+} else if ($inputtext == "แผนที่farm") {
 	$arrPostData['messages'][0]['type'] = "location";
-	$arrPostData['messages'][0]['title'] = "ศูนย์ศึกษาวิภาวดี มหาวิทยาลัยรังสิต";
-	$arrPostData['messages'][0]['address'] = "อาคาร TST Tower ชั้น 21-22 เลขที่ 21 ถ.วิภาวดีรังสิต ซ.9 จอมพล จตุจักร กรุงเทพ";
-	$arrPostData['messages'][0]['latitude'] = "13.808112";
-	$arrPostData['messages'][0]['longitude'] = "100.559255";
+	$arrPostData['messages'][0]['title'] = "Serarom Farm";
+	$arrPostData['messages'][0]['address'] = "หมู่ 7 ตำบล บ้านแลง อำเภอเมืองระยอง ระยอง 21000";
+	$arrPostData['messages'][0]['latitude'] = "12.70362";
+	$arrPostData['messages'][0]['longitude'] = "101.3655878";
  
 } else if ($inputtext == "รายงาน") {
 	$arrPostData['messages'][0]['type'] = 'text';
