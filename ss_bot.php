@@ -53,14 +53,21 @@ if($inputtext == "สวัสดี") {
 	$arrPostData['messages'][0]['text'] = "อุณหภูมิตอนนี้ " . $hu . " C";
 
 } else if ($inputtext == "อากาศ") {
-  	$s = file_get_contents("http://128.199.137.43:3000/smtbot2017/variable/temperature");
-  	$h = json_decode($s, true);
-  	$hu = $h['temperature'];
- 	$s2 = file_get_contents("http://128.199.137.43:3000/smtbot2017/variable/humidity");
- 	$h2 = json_decode($s2, true);
- 	$hu2 = $h2['humidity'];
-	$arrPostData['messages'][0]['type'] = 'text';
-	$arrPostData['messages'][0]['text'] = "อุณหภูมิ " . $hu . " C | ความชื้น " . $hu2 . " %";
+  
+	$w = new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
+	$arrPostData['messages'][0]['type'] = $w;
+	
+	//echo $w->getLocation()->getWeather()->sayHuman();
+	// Ouput~: Portsmouth, England, PO4 8 | Partly Cloudy 4°C, Humidity: 93%, Wind: N at 8 mph
+
+	//$s = file_get_contents("http://128.199.137.43:3000/smtbot2017/variable/temperature");
+  	//$h = json_decode($s, true);
+  	//$hu = $h['temperature'];
+ 	//$s2 = file_get_contents("http://128.199.137.43:3000/smtbot2017/variable/humidity");
+ 	//$h2 = json_decode($s2, true);
+ 	//$hu2 = $h2['humidity'];
+	//$arrPostData['messages'][0]['type'] = 'text';
+	//$arrPostData['messages'][0]['text'] = "อุณหภูมิ " . $hu . " C | ความชื้น " . $hu2 . " %";
 
 } else if ($inputtext == "แผนที่") {
 	$arrPostData['messages'][0]['type'] = "location";
@@ -103,10 +110,13 @@ if($inputtext == "สวัสดี") {
 }
 
 if ($w[0] == "อากาศ" and isset($w[1])) {
-		
+	
+	
+	$a =  new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
+	
 	$prov = $w[1];
- 	$a =  new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
-	$arrPostData['messages'][0]['type'] = 'text';
+  	$a = file_get_contents("http://m.smart-fttx.com/test-weather.php?prov=$prov&token=inb32XpbrlLgd8HMCzhbhZsJq7VxkqqA");
+ 	$arrPostData['messages'][0]['type'] = 'text';
  	$arrPostData['messages'][0]['text'] = $a;
 }
 
