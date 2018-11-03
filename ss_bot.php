@@ -1,5 +1,5 @@
 <?php
-include('weather-class.inc.php'); // This has all the code.
+//include('weather-class.inc.php'); // This has all the code.
 $strAccessToken = "p+61LscGUYdwMkG3rsFToYUOdW6At1JDnFoIiysCq5AyuDHInXjw4Uc/VkNoHnxDqqOerPnqI7+VFVfu5ZdJ8+VoEtvAHvc/8FL1geX7cbKBHOYoZCVX3S7PkvuQZklBPFeTKT+Og64qQS4PAPy25gdB04t89/1O/w1cDnyilFU=";
 
 $content = file_get_contents('php://input');
@@ -53,9 +53,12 @@ if($inputtext == "สวัสดี") {
 	$arrPostData['messages'][0]['text'] = "อุณหภูมิตอนนี้ " . $hu . " C";
 
 } else if ($inputtext == "อากาศ") {
-  
-	$w = new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
-	$arrPostData['messages'][0]['type'] = $w;
+    
+	$arrPostData['messages'][0]['type'] = 'text';
+	$arrPostData['messages'][0]['text'] = "Function พัฒนาอยู่ค่ะ"
+	
+	//$w = new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
+	//$arrPostData['messages'][0]['type'] = $w;
 	
 	//echo $w->getLocation()->getWeather()->sayHuman();
 	// Ouput~: Portsmouth, England, PO4 8 | Partly Cloudy 4°C, Humidity: 93%, Wind: N at 8 mph
